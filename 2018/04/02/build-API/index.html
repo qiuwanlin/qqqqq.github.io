@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>造个API | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="任务：造出一个叫addClass的API： window.jQuery = ???window.$ = jQueryvar $div = $(‘div’)$div.addClass(‘red’)  作用： 可将所有 div 的 class 添加一个 red一，让jQuery获取节点： 任务中想通过’div’这个字符串获取节点，所以先声明一个数组，利用.querySelectorAll（）这个API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="造个API">
+<meta property="og:url" content="http://yoursite.com/2018/04/02/build-API/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="任务：造出一个叫addClass的API： window.jQuery = ???window.$ = jQueryvar $div = $(‘div’)$div.addClass(‘red’)  作用： 可将所有 div 的 class 添加一个 red一，让jQuery获取节点： 任务中想通过’div’这个字符串获取节点，所以先声明一个数组，利用.querySelectorAll（）这个API">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-16T02:19:39.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="造个API">
+<meta name="twitter:description" content="任务：造出一个叫addClass的API： window.jQuery = ???window.$ = jQueryvar $div = $(‘div’)$div.addClass(‘red’)  作用： 可将所有 div 的 class 添加一个 red一，让jQuery获取节点： 任务中想通过’div’这个字符串获取节点，所以先声明一个数组，利用.querySelectorAll（）这个API">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-build-API" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/02/build-API/" class="article-date">
+  <time datetime="2018-04-02T11:32:33.000Z" itemprop="datePublished">2018-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      造个API
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="任务：造出一个叫addClass的API："><a href="#任务：造出一个叫addClass的API：" class="headerlink" title="任务：造出一个叫addClass的API："></a>任务：造出一个叫addClass的API：</h2><ul>
+<li>window.jQuery = ???<br>window.$ = jQuery<br>var $div = $(‘div’)<br>$div.addClass(‘red’) </li>
+<li>作用： 可将所有 div 的 class 添加一个 red<h3 id="一，让jQuery获取节点："><a href="#一，让jQuery获取节点：" class="headerlink" title="一，让jQuery获取节点："></a>一，让jQuery获取节点：</h3></li>
+<li>任务中想通过’div’这个字符串获取节点，所以先声明一个数组，利用.querySelectorAll（）这个API来获得。<br>这种方法可以同时操作多个节点。</li>
+<li>window.jQuery = function(node){<br>let nodes = {}<br>let temp = document.querySelectorAll(node)  //这是伪数组<br>  for(let i=0;i&lt;temp.length;i++){nodes[i] = temp[i]}<br>  nodes.length = temp.length</li>
+</ul>
+<hr>
+<p>如果不是通过字符串而是选择器来获取节点呢？<br>那就要加入判断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">window.jQuery = function(nodeOrSelector)&#123;</span><br><span class="line">let nodes = &#123;&#125;</span><br><span class="line">if(typeof nodeOrSelector === &apos;string&apos;)&#123;</span><br><span class="line">  let temp = document.querySelectorAll(nodeOrSelector) </span><br><span class="line">  for(let i=0;i&lt;temp.length;i++)&#123;nodes[i] = temp[i]&#125;</span><br><span class="line">  nodes.length = temp.length</span><br><span class="line">&#125;else if(nodeOrSelector instanceof Node)&#123;</span><br><span class="line">  nodes = &#123;0:nodeOrSelector, length:1&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="二，造API："><a href="#二，造API：" class="headerlink" title="二，造API："></a>二，造API：</h3><ul>
+<li>任务中要求把输入的字符串添加至类名，所以直接用<br>nodes.addClass = function(c){<br>  for(let i=0;i&lt;nodes.length;i++){nodes[i].classList.add(c)}<br>  }  即可</li>
+</ul>
+<hr>
+<p>如果想要实现一次输入多个类名且可以控制每个类名是否被加上，可以这样：</p>
+<ul>
+<li>nodes.addClass = function(classes){<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(let key in classes)&#123;</span><br><span class="line">    var value = classes[key]</span><br><span class="line">    var methodName = value?&apos;add&apos;:&apos;remove&apos;</span><br><span class="line">    for(let i=0;i&lt;nodes.length;i++)&#123;nodes[i].classList[methodName] (key)&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="三，返回节点"><a href="#三，返回节点" class="headerlink" title="三，返回节点"></a>三，返回节点</h3><p>这是最重要也最容易忘记的部分，整个函数都是在对指定的节点进行操作，最后一定要：</p>
+<ul>
+<li>return nodes<br>}</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/02/build-API/" data-id="cjh8hfegt0002iouxqlvpn46w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/16/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/10/输入url后发生了什么/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">输入URL到出现网页的过程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/05/16/cookie/">cookie</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/16/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/02/build-API/">造个API</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/10/输入url后发生了什么/">输入URL到出现网页的过程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/08/build-blog/">建博客的过程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
