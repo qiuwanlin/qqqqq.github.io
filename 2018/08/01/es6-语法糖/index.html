@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/qqqqq.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/qqqqq.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/qqqqq.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/qqqqq.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/qqqqq.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/qqqqq.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/qqqqq.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="函数默认参数12345678function sum(a,b)&amp;#123;    a = a || 0 //取默认值的惯用写法    b = b || 0 //没这行b就是undefined，a+b是NAN    return a+b&amp;#125;function sum(a=0,b=0)&amp;#123; //es6新语法    return a+b&amp;#125; 剩余参数12345678function">
+<meta property="og:type" content="article">
+<meta property="og:title" content="es6-语法糖">
+<meta property="og:url" content="https://qiuwanlin.github.io/2018/08/01/es6-语法糖/index.html">
+<meta property="og:site_name" content="qiu&#39;s Hexo">
+<meta property="og:description" content="函数默认参数12345678function sum(a,b)&amp;#123;    a = a || 0 //取默认值的惯用写法    b = b || 0 //没这行b就是undefined，a+b是NAN    return a+b&amp;#125;function sum(a=0,b=0)&amp;#123; //es6新语法    return a+b&amp;#125; 剩余参数12345678function">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-01T13:58:54.043Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="es6-语法糖">
+<meta name="twitter:description" content="函数默认参数12345678function sum(a,b)&amp;#123;    a = a || 0 //取默认值的惯用写法    b = b || 0 //没这行b就是undefined，a+b是NAN    return a+b&amp;#125;function sum(a=0,b=0)&amp;#123; //es6新语法    return a+b&amp;#125; 剩余参数12345678function">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/qqqqq.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://qiuwanlin.github.io/2018/08/01/es6-语法糖/"/>
+
+
+
+
+
+  <title>es6-语法糖 | qiu's Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/qqqqq.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">qiu's Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/qqqqq.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/qqqqq.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/01/es6-语法糖/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiu's Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">es6-语法糖</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T17:36:55+08:00">
+                2018-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="函数默认参数"><a href="#函数默认参数" class="headerlink" title="函数默认参数"></a>函数默认参数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function sum(a,b)&#123;</span><br><span class="line">    a = a || 0 //取默认值的惯用写法</span><br><span class="line">    b = b || 0 //没这行b就是undefined，a+b是NAN</span><br><span class="line">    return a+b</span><br><span class="line">&#125;</span><br><span class="line">function sum(a=0,b=0)&#123; //es6新语法</span><br><span class="line">    return a+b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function sum(message)&#123;</span><br><span class="line">    let result = 0</span><br><span class="line">    for(let i = 1;i&lt;arguments.length;i++)&#123;</span><br><span class="line">        result +=arguments[i] //arguments是伪数组</span><br><span class="line">    &#125;</span><br><span class="line">    retuen result</span><br><span class="line">&#125;</span><br><span class="line">sum(&apos;结果是&apos;,1,2,3)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function sum(message, ...numbers)&#123; //...剩余参数</span><br><span class="line">    let result = 0</span><br><span class="line">    for(let i = 0;i&lt;numbers.length;i++)&#123;</span><br><span class="line">        result +=numbers[i]</span><br><span class="line">    &#125;</span><br><span class="line">    retuen result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="…的用法再举例："><a href="#…的用法再举例：" class="headerlink" title="…的用法再举例："></a>…的用法再举例：</h2><p>var arr1 = [1,2,3,4,5]<br>var [a,b,c,…arr2,7]=arr1 //es5 : var arr2 = [0].concat(arr1).concat([7])<br>//但是剩余参数符后再加参数可能报错，Rest element must be last element。<br>console.log(arr2) [4,5,7]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function sum(message)&#123;</span><br><span class="line">    //let args = Array.prototype.slice.call(arguments) es5写法</span><br><span class="line">    //let args = Array.from(arguments) </span><br><span class="line">    let args = [...arguments] </span><br><span class="line">    //以上是伪数组变成真数组的方法</span><br><span class="line">    let numbers = args.slice(1) //把参数从第一项切开</span><br><span class="line">    result = numbers.reduce((p,v)=&gt;p+v,0) //这个api作用等于上面那个for循环</span><br><span class="line">    return message + result</span><br><span class="line">&#125;</span><br><span class="line">sum(&apos;结果是&apos;,1,2,3)</span><br></pre></td></tr></table></figure>
+<h1 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h1><h2 id="a-1-b-2，怎样交换值？"><a href="#a-1-b-2，怎样交换值？" class="headerlink" title="a=1 b=2，怎样交换值？"></a>a=1 b=2，怎样交换值？</h2><p>旧语法：olda=a a=b b=olda，<br>es6：var a=1;var b=2;[a,b]=[b,a] //方括号前要加分号，避免方括号自己往上一行靠。</p>
+<h2 id="怎样取对象中的内容"><a href="#怎样取对象中的内容" class="headerlink" title="怎样取对象中的内容"></a>怎样取对象中的内容</h2><p>var qiu = {<br>    name:’q’,age:18,child:<br>    {<br>        name:’li’<br>    }<br>}<br>var name = qiu.name<br><strong>es6:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var &#123;name&#125; = qiu </span><br><span class="line">console.log(name) //q</span><br><span class="line"></span><br><span class="line">var &#123;child:&#123;name&#125;&#125; = qiu </span><br><span class="line">console.log(name) //li</span><br></pre></td></tr></table></figure></p>
+<p>可以这样改变key名字：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var &#123;name:mingzi&#125; = qiu;</span><br><span class="line">console.log(mingzi) //q</span><br><span class="line">console.log(name) //defined</span><br><span class="line"></span><br><span class="line">var &#123;child:&#123;name:ming = &apos;wan&apos;&#125;&#125; = qiu</span><br><span class="line">console.log(ming) //li，如果child一开始没name，就会直接声明一个ming:wan</span><br></pre></td></tr></table></figure></p>
+<h2 id="改变值"><a href="#改变值" class="headerlink" title="改变值"></a>改变值</h2><p> var [a=5,b=7]=[1]<br> console.log(a,b) //1,7 。5 7是默认值</p>
+<h2 id="对象浅拷贝："><a href="#对象浅拷贝：" class="headerlink" title="对象浅拷贝："></a>对象浅拷贝：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let obja = &#123;name:&apos;a&apos;&#125;</span><br><span class="line">let objb = Object.assign(&#123;&#125;,obja)</span><br><span class="line">console.log(objb) //&#123;name:&quot;a&quot;&#125;</span><br><span class="line">objb.name=&apos;b&apos;</span><br><span class="line">console.log(obja.name) //a 因为a是字符串，所以完整的拷贝过来了</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let obja = &#123;name:&#123;</span><br><span class="line">    x:&apos;a&apos;</span><br><span class="line">&#125;&#125;</span><br><span class="line">let objb = Object.assign(&#123;&#125;,obja)</span><br><span class="line">objb.name.x=&apos;b&apos;</span><br><span class="line">console.log(obja.name) //&#123;x:&quot;b&quot;&#125; 拷贝过来了a的地址</span><br></pre></td></tr></table></figure>
+<ul>
+<li>怎样简洁的浅拷贝？<br>let objb = {…obja}</li>
+<li>怎样合并且浅拷贝？</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let obja = &#123;p1:1, p2:2&#125;</span><br><span class="line">let objc = &#123;p1:11, p3:3&#125;</span><br><span class="line">let objb = Object.assign(&#123;&#125;,obja,objc) //简洁写法 let objb = &#123;...obja,...objc&#125;</span><br><span class="line">console.log(objb) //&#123;p1:11, p2:2, p3:3&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="合构："><a href="#合构：" class="headerlink" title="合构："></a>合构：</h2><ol>
+<li>合构属性：<br>var x=1 var y=2<br>var obj={x:x,y:y} //key和变量名恰好一样<br><strong>es6:</strong><br>var obj = {x,y}</li>
+</ol>
+<ul>
+<li>也可以这样：<br>var[x,y]=[1,2]  var obj = {x,y}</li>
+</ul>
+<ol start="2">
+<li><p>合构函数：<br>var obj1 = {<br> hi:function(name){}<br>}<br><strong>es6:</strong><br>var obj1 = {<br> hi(name){}<br>} </p>
+</li>
+<li><p>声明对象中的动态的key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var key = &apos;x&apos;</span><br><span class="line">var value = &apos;y&apos;</span><br><span class="line">var obj =&#123;</span><br><span class="line">    &quot;key&quot;:value //错的，这样的key是字符串不是变量</span><br><span class="line">&#125;</span><br><span class="line">obj[key]=value // 对的，结果是&#123;&quot;x&quot;:&quot;y&quot;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>用es6怎么写：<br>var obj = {<br>  [key] : value<br>}</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/qqqqq.github.io/2018/08/01/es6-箭头函数/" rel="next" title="es6-箭头函数">
+                <i class="fa fa-chevron-left"></i> es6-箭头函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/qqqqq.github.io/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数默认参数"><span class="nav-number">1.</span> <span class="nav-text">函数默认参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#剩余参数"><span class="nav-number">2.</span> <span class="nav-text">剩余参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#…的用法再举例："><span class="nav-number">2.1.</span> <span class="nav-text">…的用法再举例：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解构赋值"><span class="nav-number">3.</span> <span class="nav-text">解构赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-1-b-2，怎样交换值？"><span class="nav-number">3.1.</span> <span class="nav-text">a=1 b=2，怎样交换值？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎样取对象中的内容"><span class="nav-number">3.2.</span> <span class="nav-text">怎样取对象中的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变值"><span class="nav-number">3.3.</span> <span class="nav-text">改变值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象浅拷贝："><span class="nav-number">3.4.</span> <span class="nav-text">对象浅拷贝：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合构："><span class="nav-number">3.5.</span> <span class="nav-text">合构：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/qqqqq.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

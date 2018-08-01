@@ -229,6 +229,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/01/es6-语法糖/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiu's Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/qqqqq.github.io/2018/08/01/es6-语法糖/" itemprop="url">es6-语法糖</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T17:36:55+08:00">
+                2018-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="函数默认参数"><a href="#函数默认参数" class="headerlink" title="函数默认参数"></a>函数默认参数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function sum(a,b)&#123;</span><br><span class="line">    a = a || 0 //取默认值的惯用写法</span><br><span class="line">    b = b || 0 //没这行b就是undefined，a+b是NAN</span><br><span class="line">    return a+b</span><br><span class="line">&#125;</span><br><span class="line">function sum(a=0,b=0)&#123; //es6新语法</span><br><span class="line">    return a+b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function sum(message)&#123;</span><br><span class="line">    let result = 0</span><br><span class="line">    for(let i = 1;i&lt;arguments.length;i++)&#123;</span><br><span class="line">        result +=arguments[i] //arguments是伪数组</span><br><span class="line">    &#125;</span><br><span class="line">    retuen result</span><br><span class="line">&#125;</span><br><span class="line">sum(&apos;结果是&apos;,1,2,3)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function sum(message, ...numbers)&#123; //...剩余参数</span><br><span class="line">    let result = 0</span><br><span class="line">    for(let i = 0;i&lt;numbers.length;i++)&#123;</span><br><span class="line">        result +=numbers[i]</span><br><span class="line">    &#125;</span><br><span class="line">    retuen result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="…的用法再举例："><a href="#…的用法再举例：" class="headerlink" title="…的用法再举例："></a>…的用法再举例：</h2><p>var arr1 = [1,2,3,4,5]<br>var [a,b,c,…arr2,7]=arr1 //es5 : var arr2 = [0].concat(arr1).concat([7])<br>//但是剩余参数符后再加参数可能报错，Rest element must be last element。<br>console.log(arr2) [4,5,7]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function sum(message)&#123;</span><br><span class="line">    //let args = Array.prototype.slice.call(arguments) es5写法</span><br><span class="line">    //let args = Array.from(arguments) </span><br><span class="line">    let args = [...arguments] </span><br><span class="line">    //以上是伪数组变成真数组的方法</span><br><span class="line">    let numbers = args.slice(1) //把参数从第一项切开</span><br><span class="line">    result = numbers.reduce((p,v)=&gt;p+v,0) //这个api作用等于上面那个for循环</span><br><span class="line">    return message + result</span><br><span class="line">&#125;</span><br><span class="line">sum(&apos;结果是&apos;,1,2,3)</span><br></pre></td></tr></table></figure>
+<h1 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h1><h2 id="a-1-b-2，怎样交换值？"><a href="#a-1-b-2，怎样交换值？" class="headerlink" title="a=1 b=2，怎样交换值？"></a>a=1 b=2，怎样交换值？</h2><p>旧语法：olda=a a=b b=olda，<br>es6：var a=1;var b=2;[a,b]=[b,a] //方括号前要加分号，避免方括号自己往上一行靠。</p>
+<h2 id="怎样取对象中的内容"><a href="#怎样取对象中的内容" class="headerlink" title="怎样取对象中的内容"></a>怎样取对象中的内容</h2><p>var qiu = {<br>    name:’q’,age:18,child:<br>    {<br>        name:’li’<br>    }<br>}<br>var name = qiu.name<br><strong>es6:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var &#123;name&#125; = qiu </span><br><span class="line">console.log(name) //q</span><br><span class="line"></span><br><span class="line">var &#123;child:&#123;name&#125;&#125; = qiu </span><br><span class="line">console.log(name) //li</span><br></pre></td></tr></table></figure></p>
+<p>可以这样改变key名字：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var &#123;name:mingzi&#125; = qiu;</span><br><span class="line">console.log(mingzi) //q</span><br><span class="line">console.log(name) //defined</span><br><span class="line"></span><br><span class="line">var &#123;child:&#123;name:ming = &apos;wan&apos;&#125;&#125; = qiu</span><br><span class="line">console.log(ming) //li，如果child一开始没name，就会直接声明一个ming:wan</span><br></pre></td></tr></table></figure></p>
+<h2 id="改变值"><a href="#改变值" class="headerlink" title="改变值"></a>改变值</h2><p> var [a=5,b=7]=[1]<br> console.log(a,b) //1,7 。5 7是默认值</p>
+<h2 id="对象浅拷贝："><a href="#对象浅拷贝：" class="headerlink" title="对象浅拷贝："></a>对象浅拷贝：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let obja = &#123;name:&apos;a&apos;&#125;</span><br><span class="line">let objb = Object.assign(&#123;&#125;,obja)</span><br><span class="line">console.log(objb) //&#123;name:&quot;a&quot;&#125;</span><br><span class="line">objb.name=&apos;b&apos;</span><br><span class="line">console.log(obja.name) //a 因为a是字符串，所以完整的拷贝过来了</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let obja = &#123;name:&#123;</span><br><span class="line">    x:&apos;a&apos;</span><br><span class="line">&#125;&#125;</span><br><span class="line">let objb = Object.assign(&#123;&#125;,obja)</span><br><span class="line">objb.name.x=&apos;b&apos;</span><br><span class="line">console.log(obja.name) //&#123;x:&quot;b&quot;&#125; 拷贝过来了a的地址</span><br></pre></td></tr></table></figure>
+<ul>
+<li>怎样简洁的浅拷贝？<br>let objb = {…obja}</li>
+<li>怎样合并且浅拷贝？</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let obja = &#123;p1:1, p2:2&#125;</span><br><span class="line">let objc = &#123;p1:11, p3:3&#125;</span><br><span class="line">let objb = Object.assign(&#123;&#125;,obja,objc) //简洁写法 let objb = &#123;...obja,...objc&#125;</span><br><span class="line">console.log(objb) //&#123;p1:11, p2:2, p3:3&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="合构："><a href="#合构：" class="headerlink" title="合构："></a>合构：</h2><ol>
+<li>合构属性：<br>var x=1 var y=2<br>var obj={x:x,y:y} //key和变量名恰好一样<br><strong>es6:</strong><br>var obj = {x,y}</li>
+</ol>
+<ul>
+<li>也可以这样：<br>var[x,y]=[1,2]  var obj = {x,y}</li>
+</ul>
+<ol start="2">
+<li><p>合构函数：<br>var obj1 = {<br> hi:function(name){}<br>}<br><strong>es6:</strong><br>var obj1 = {<br> hi(name){}<br>} </p>
+</li>
+<li><p>声明对象中的动态的key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var key = &apos;x&apos;</span><br><span class="line">var value = &apos;y&apos;</span><br><span class="line">var obj =&#123;</span><br><span class="line">    &quot;key&quot;:value //错的，这样的key是字符串不是变量</span><br><span class="line">&#125;</span><br><span class="line">obj[key]=value // 对的，结果是&#123;&quot;x&quot;:&quot;y&quot;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>用es6怎么写：<br>var obj = {<br>  [key] : value<br>}</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/01/es6-箭头函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1445,130 +1596,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/02/08/build-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qiu's Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/qqqqq.github.io/2018/02/08/build-blog/" itemprop="url">建博客的过程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-08T21:56:30+08:00">
-                2018-02-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>首先在 GitHub 上新建一个空 repo.<br>安装HEXO：npm install -g hexo-cli<br>然后新建一个名为 qiu 的文件夹，执行：<br>$ hexo init qiu<br>$ cd qiu<br>$ npm install<br>start _config.yml，编辑网站配置.<br>在最后一行后面新增一行，左边与 type 平齐，加上一行 repo: 仓库地址 .</p>
-<p>*npm install hexo-deployer-git –save，安装 git 部署插件.<br>hexo d<br>进入github对应的 repo，打开 GitHub Pages 功能预览即可。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/qqqqq.github.io/page/2/">2</a><a class="extend next" rel="next" href="/qqqqq.github.io/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1612,7 +1646,7 @@
               
                 <a href="/qqqqq.github.io/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
