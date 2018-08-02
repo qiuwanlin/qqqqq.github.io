@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/02/es6-迭代-对象属性加强等/">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/02/es6-对象属性加强/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -248,7 +248,152 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/qqqqq.github.io/2018/08/02/es6-迭代-对象属性加强等/" itemprop="url">es6-迭代</a></h1>
+                <a class="post-title-link" href="/qqqqq.github.io/2018/08/02/es6-对象属性加强/" itemprop="url">es6-对象属性加强</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T20:04:38+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="对象初始化"><a href="#对象初始化" class="headerlink" title="对象初始化"></a>对象初始化</h2><p>可以通过new Object(), Object.creat() 方法，或只用字面量标记来初始化对象。</p>
+<ul>
+<li>es5生成空对象：<br>var a = new Object()  // 等价于 var d = {}</li>
+<li>es6新增生成真正空对象的方法：<br>var b = Object.creat(null) 能创建一个连原型都没有的很空的空对象。</li>
+<li>es6也能生成a那种对象：<br>var c = Object.creat(Object.prototype)</li>
+</ul>
+<h2 id="属性访问"><a href="#属性访问" class="headerlink" title="属性访问"></a>属性访问</h2><ol>
+<li>object.a</li>
+<li>object[“a”]</li>
+</ol>
+<h2 id="属性定义"><a href="#属性定义" class="headerlink" title="属性定义"></a>属性定义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. var obj = &#123;a:1,b:2,a:3&#125; //3会覆盖前面的1</span><br><span class="line">2. var a=1;var b=2; </span><br><span class="line">   var object = &#123;a:a, b:b&#125;  可以简写成：</span><br><span class="line">   var object = &#123;a, b&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方法定义"><a href="#方法定义" class="headerlink" title="方法定义"></a>方法定义</h2><p>可以对属性的读和写进行自定义操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var qiu = &#123;age:18&#125;  //这样可以任意改变age值</span><br><span class="line">var qiu = &#123;</span><br><span class="line">    _age: 18, //不能和下面方法重名</span><br><span class="line">    get age()&#123;return qiu._age&#125;</span><br><span class="line">    set age(value)&#123;</span><br><span class="line">        if(value&lt;100)&#123;qiu._age = value&#125;</span><br><span class="line">        else&#123;qiu._age = 100&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; // 这样就限制了age值的改变</span><br></pre></td></tr></table></figure></p>
+<p>这个思路可以实现 a===1 &amp;&amp; a===2 &amp;&amp; a===3 //true：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var i = 0</span><br><span class="line">Object.defineProperty(window,&apos;a&apos;,&#123;</span><br><span class="line">    get()&#123;</span><br><span class="line">        i+=1</span><br><span class="line">        return i</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="计算属性名"><a href="#计算属性名" class="headerlink" title="计算属性名"></a>计算属性名</h2><p>es6可以在方括号里用复杂方式命名属性名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var n =2</span><br><span class="line">var a = &#123;</span><br><span class="line">    [n*n+n/3]:1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="扩展属性"><a href="#扩展属性" class="headerlink" title="扩展属性"></a>扩展属性</h2><p>让一个对象的key等于另一个对象的key。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123;a:1,b:2,c:3&#125;</span><br><span class="line">var obj2 = &#123;&#125;</span><br><span class="line">for(let key in obj1)&#123;</span><br><span class="line">    obj2[key] = obj1[key]</span><br><span class="line">&#125;</span><br><span class="line">obj2.a = 100</span><br><span class="line">obj1.a //1</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>es6提供了两种简洁语法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var obj2 = Object.assign(&#123;&#125;,obj1)</span><br><span class="line">var obj2 = &#123;...obj1&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="变更原型"><a href="#变更原型" class="headerlink" title="变更原型"></a>变更原型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;&#125;</span><br><span class="line">a.valueOf() // &#123;&#125;</span><br><span class="line">a.__proto__ === Object.prototype</span><br><span class="line"></span><br><span class="line">a = Object.creat(b)</span><br><span class="line">a.__proto__ === b //意味着b的所有属性都可以通过直接访问</span><br><span class="line">a.__proto__ 就可以获取到a的原型，但是不推荐这么写，最好这样</span><br><span class="line">Object.getPrototypeOf(a)</span><br></pre></td></tr></table></figure>
+<h2 id="JS的对象与JSON的对象的区别"><a href="#JS的对象与JSON的对象的区别" class="headerlink" title="JS的对象与JSON的对象的区别"></a>JS的对象与JSON的对象的区别</h2><ol>
+<li>JSON 只允许”key”: value syntax 形式的属性定义。属性名必须用双引号括起来。且属性定义不允许使用简便写法。</li>
+<li>JSON中，属性的值仅允许字符串，数字，数组，true，false，null或其他（JSON）对象。</li>
+<li>JSON中，不允许将值设置没有function undefined。</li>
+<li>Date 等对象，经JSON.parse()处理后，会变成字符串。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/02/es6-迭代/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiu's Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/qqqqq.github.io/2018/08/02/es6-迭代/" itemprop="url">es6-迭代</a></h1>
         
 
         <div class="post-meta">
@@ -1467,146 +1612,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/04/02/build-API/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qiu's Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/qqqqq.github.io/2018/04/02/build-API/" itemprop="url">造个API</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T19:32:33+08:00">
-                2018-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="任务：造出一个叫addClass的API："><a href="#任务：造出一个叫addClass的API：" class="headerlink" title="任务：造出一个叫addClass的API："></a>任务：造出一个叫addClass的API：</h2><ul>
-<li>window.jQuery = ???<br>window.$ = jQuery<br>var $div = $(‘div’)<br>$div.addClass(‘red’) </li>
-<li>作用： 可将所有 div 的 class 添加一个 red<h3 id="一，让jQuery获取节点："><a href="#一，让jQuery获取节点：" class="headerlink" title="一，让jQuery获取节点："></a>一，让jQuery获取节点：</h3></li>
-<li>任务中想通过’div’这个字符串获取节点，所以先声明一个数组，利用.querySelectorAll（）这个API来获得。<br>这种方法可以同时操作多个节点。</li>
-<li>window.jQuery = function(node){<br>let nodes = {}<br>let temp = document.querySelectorAll(node)  //这是伪数组<br>  for(let i=0;i&lt;temp.length;i++){nodes[i] = temp[i]}<br>  nodes.length = temp.length</li>
-</ul>
-<hr>
-<p>如果不是通过字符串而是选择器来获取节点呢？<br>那就要加入判断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">window.jQuery = function(nodeOrSelector)&#123;</span><br><span class="line">let nodes = &#123;&#125;</span><br><span class="line">if(typeof nodeOrSelector === &apos;string&apos;)&#123;</span><br><span class="line">  let temp = document.querySelectorAll(nodeOrSelector) </span><br><span class="line">  for(let i=0;i&lt;temp.length;i++)&#123;nodes[i] = temp[i]&#125;</span><br><span class="line">  nodes.length = temp.length</span><br><span class="line">&#125;else if(nodeOrSelector instanceof Node)&#123;</span><br><span class="line">  nodes = &#123;0:nodeOrSelector, length:1&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="二，造API："><a href="#二，造API：" class="headerlink" title="二，造API："></a>二，造API：</h3><ul>
-<li>任务中要求把输入的字符串添加至类名，所以直接用<br>nodes.addClass = function(c){<br>  for(let i=0;i&lt;nodes.length;i++){nodes[i].classList.add(c)}<br>  }  即可</li>
-</ul>
-<hr>
-<p>如果想要实现一次输入多个类名且可以控制每个类名是否被加上，可以这样：</p>
-<ul>
-<li>nodes.addClass = function(classes){<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(let key in classes)&#123;</span><br><span class="line">    var value = classes[key]</span><br><span class="line">    var methodName = value?&apos;add&apos;:&apos;remove&apos;</span><br><span class="line">    for(let i=0;i&lt;nodes.length;i++)&#123;nodes[i].classList[methodName] (key)&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="三，返回节点"><a href="#三，返回节点" class="headerlink" title="三，返回节点"></a>三，返回节点</h3><p>这是最重要也最容易忘记的部分，整个函数都是在对指定的节点进行操作，最后一定要：</p>
-<ul>
-<li>return nodes<br>}</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1657,7 +1662,7 @@
               
                 <a href="/qqqqq.github.io/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

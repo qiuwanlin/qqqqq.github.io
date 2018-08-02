@@ -229,6 +229,146 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/04/02/build-API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiu's Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/qqqqq.github.io/2018/04/02/build-API/" itemprop="url">造个API</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T19:32:33+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="任务：造出一个叫addClass的API："><a href="#任务：造出一个叫addClass的API：" class="headerlink" title="任务：造出一个叫addClass的API："></a>任务：造出一个叫addClass的API：</h2><ul>
+<li>window.jQuery = ???<br>window.$ = jQuery<br>var $div = $(‘div’)<br>$div.addClass(‘red’) </li>
+<li>作用： 可将所有 div 的 class 添加一个 red<h3 id="一，让jQuery获取节点："><a href="#一，让jQuery获取节点：" class="headerlink" title="一，让jQuery获取节点："></a>一，让jQuery获取节点：</h3></li>
+<li>任务中想通过’div’这个字符串获取节点，所以先声明一个数组，利用.querySelectorAll（）这个API来获得。<br>这种方法可以同时操作多个节点。</li>
+<li>window.jQuery = function(node){<br>let nodes = {}<br>let temp = document.querySelectorAll(node)  //这是伪数组<br>  for(let i=0;i&lt;temp.length;i++){nodes[i] = temp[i]}<br>  nodes.length = temp.length</li>
+</ul>
+<hr>
+<p>如果不是通过字符串而是选择器来获取节点呢？<br>那就要加入判断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">window.jQuery = function(nodeOrSelector)&#123;</span><br><span class="line">let nodes = &#123;&#125;</span><br><span class="line">if(typeof nodeOrSelector === &apos;string&apos;)&#123;</span><br><span class="line">  let temp = document.querySelectorAll(nodeOrSelector) </span><br><span class="line">  for(let i=0;i&lt;temp.length;i++)&#123;nodes[i] = temp[i]&#125;</span><br><span class="line">  nodes.length = temp.length</span><br><span class="line">&#125;else if(nodeOrSelector instanceof Node)&#123;</span><br><span class="line">  nodes = &#123;0:nodeOrSelector, length:1&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="二，造API："><a href="#二，造API：" class="headerlink" title="二，造API："></a>二，造API：</h3><ul>
+<li>任务中要求把输入的字符串添加至类名，所以直接用<br>nodes.addClass = function(c){<br>  for(let i=0;i&lt;nodes.length;i++){nodes[i].classList.add(c)}<br>  }  即可</li>
+</ul>
+<hr>
+<p>如果想要实现一次输入多个类名且可以控制每个类名是否被加上，可以这样：</p>
+<ul>
+<li>nodes.addClass = function(classes){<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(let key in classes)&#123;</span><br><span class="line">    var value = classes[key]</span><br><span class="line">    var methodName = value?&apos;add&apos;:&apos;remove&apos;</span><br><span class="line">    for(let i=0;i&lt;nodes.length;i++)&#123;nodes[i].classList[methodName] (key)&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="三，返回节点"><a href="#三，返回节点" class="headerlink" title="三，返回节点"></a>三，返回节点</h3><p>这是最重要也最容易忘记的部分，整个函数都是在对指定的节点进行操作，最后一定要：</p>
+<ul>
+<li>return nodes<br>}</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/03/10/输入url后发生了什么/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -524,7 +664,7 @@
               
                 <a href="/qqqqq.github.io/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
