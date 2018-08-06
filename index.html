@@ -229,6 +229,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/05/js-函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiu's Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/qqqqq.github.io/2018/08/05/js-函数/" itemprop="url">js-函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T20:43:15+08:00">
+                2018-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/js深入浅出/" itemprop="url" rel="index">
+                    <span itemprop="name">js深入浅出</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h1><ol>
+<li><p>匿名函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var fn = function()&#123;&#125;</span><br><span class="line">//fn存的是函数地址而不是本身</span><br><span class="line">var fn2 = fn</span><br><span class="line">fn.name //fn</span><br><span class="line">fn2.name //fn</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>具名函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function fn3()&#123;&#125; //作用域是整个文件</span><br><span class="line">var fn5 = function fn4()&#123;&#125; //把具名函数传给变量的话，fn4作用域仅限=到&#125;。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>箭头函数<br>var fn6 = (i,j) =&gt; {console.log(1);return i+j}</p>
+</li>
+</ol>
+<h1 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h1><p><a href="https://js8.in/2011/08/15/javascript%E7%9A%84%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F/" target="_blank" rel="noopener">js的词法作用域</a></p>
+<h1 id="this-amp-arguments"><a href="#this-amp-arguments" class="headerlink" title="this &amp; arguments"></a>this &amp; arguments</h1><ul>
+<li>this 就是 call 第第一个参数。call 的其他参数统称为 arguments。</li>
+<li><p>this 是隐藏的第一个参数，且必须是对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function f()&#123;</span><br><span class="line">      console.log(this)</span><br><span class="line">      console.log(arguments)</span><br><span class="line">  &#125;</span><br><span class="line">  f.call() // windo</span><br><span class="line">  f.call(&#123;name:&apos;q&#125;,1,2) // &#123;name: &apos;q&apos;&#125;, [1,2]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>this 为什么必须是对象,因为 this 就是函数与对象之间的羁绊。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">    name: &apos;q&apos;,</span><br><span class="line">    sayHi: function(person)&#123;</span><br><span class="line">    console.log(&apos;Hi, I am&apos; + person.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">      person.sayHi(person)</span><br><span class="line">// 调用方式变成 person.sayHi() ：</span><br><span class="line">var person = &#123;</span><br><span class="line">    name: &apos;q&apos;,</span><br><span class="line">    sayHi: function()&#123;</span><br><span class="line">    console.log(&apos;Hi, I am&apos; + this.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 如果不想吃语法糖</span><br><span class="line">person.sayHi.call(person)</span><br><span class="line">// this 是参数，所以，只有在调用的时候才能确定</span><br><span class="line">person.sayHi.call(&#123;name:&apos;haha&apos;&#125;)  // 这时 sayHi 里面的 this 就不是 person 了</span><br><span class="line"></span><br><span class="line">var fn = person.sayHi</span><br><span class="line">person.sayHi() // this === person</span><br><span class="line">fn()  // this === window</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h1><p>fn.call(asThis, p1,p2) 是函数的正常调用方式，<br>当你不确定参数的个数时，就使用 apply：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function sum()&#123;</span><br><span class="line">    var n = 0;</span><br><span class="line">    for(var i=0;i&lt;arguments.length;i++)&#123;</span><br><span class="line">        n+= arguments[i]</span><br><span class="line">    &#125;</span><br><span class="line">    return n</span><br><span class="line">&#125;</span><br><span class="line">var a = [1,2,3,4,5,6,7]</span><br><span class="line">sum.apply(undefined,a)</span><br></pre></td></tr></table></figure></p>
+<h1 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h1><p>~~~<br>var view = {<br>    element:$(‘#div’)<br>    bindEvents:function(){<br>        this.element.onclick = function(){<br>            this.onClick() //浏览器调这个函数,this是触发事件的元素(div)<br>        }<br>    },<br>    onClick:function(){}<br>}<br>那怎么办，只能把this记下来，让this是view<br>bindEvents:function(){<br>    var _this = this<br>    this.element.onclick = function(){<br>        _this.onClick()<br>    }<br>},<br>之后发明了bind:<br>bindEvents:function(){<br>    this.element.onclick = this.onClick.bind(this)<br>},</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/04/es6-原型-类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -270,6 +433,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -397,6 +582,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -542,6 +749,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -690,6 +919,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -842,6 +1093,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -979,6 +1252,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1464,135 +1759,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/04/16/jsonp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qiu's Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/qqqqq.github.io/2018/04/16/jsonp/" itemprop="url">jsonp</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-16T10:32:56+08:00">
-                2018-04-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="JSONP是什么"><a href="#JSONP是什么" class="headerlink" title="JSONP是什么"></a>JSONP是什么</h2><ul>
-<li>请求方动态创建一个 script 标签，src 属性指向响应方，同时传一个查询参数如 ?callbackName=xxx</li>
-<li>响应方根据查询参数callbackName，构造形如<br>xxx.call(undefined,’需要的数据’)<br>xxx.call(‘需要的数据’)</li>
-<li>浏览器方接收到响应，就会执行xxx.call(undefined,’你要的数据 ‘)，那么请求方就知道了他要的数据。<br>这就是JSONP。</li>
-</ul>
-<h2 id="行业规定"><a href="#行业规定" class="headerlink" title="行业规定"></a>行业规定</h2><p>callbackName -&gt; callback<br>xxx -&gt; 随机数 xxx随机数</p>
-<ul>
-<li>即回调函数的查询参数名称是callback，调用的函数名是结合随机数动态生成创建后调用再删除的，jQuery的jsonp方法便是采用这样的约定实现的。</li>
-</ul>
-<h2 id="JSONP-为什么不支持-POST"><a href="#JSONP-为什么不支持-POST" class="headerlink" title="JSONP 为什么不支持 POST"></a>JSONP 为什么不支持 POST</h2><p>1.因为jsonp是通过动态创建script标签实现的<br>2.动态创建script的时候只能使用get，无法使用post</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1643,12 +1809,21 @@
               
                 <a href="/qqqqq.github.io/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/qqqqq.github.io/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
             
 
             
