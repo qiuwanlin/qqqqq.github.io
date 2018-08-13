@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/qqqqq.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/qqqqq.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/qqqqq.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/qqqqq.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/qqqqq.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/qqqqq.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/qqqqq.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="transition在CSS3引入transition之前css没有时间轴，所有的状态变化都是瞬间完成，transition是指定状态变化所需要的时间。  目前，各大浏览器（包括IE 10）都已经支持无前缀的transition，所以transition已经可以很安全地不加浏览器前缀。 transition需要明确知道，开始状态和结束状态的具体数值，才能计算出中间状态，none到block之类的是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css动画">
+<meta property="og:url" content="https://qiuwanlin.github.io/2018/08/13/css动画与3d/index.html">
+<meta property="og:site_name" content="qiu&#39;s Hexo">
+<meta property="og:description" content="transition在CSS3引入transition之前css没有时间轴，所有的状态变化都是瞬间完成，transition是指定状态变化所需要的时间。  目前，各大浏览器（包括IE 10）都已经支持无前缀的transition，所以transition已经可以很安全地不加浏览器前缀。 transition需要明确知道，开始状态和结束状态的具体数值，才能计算出中间状态，none到block之类的是">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-13T09:48:39.318Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css动画">
+<meta name="twitter:description" content="transition在CSS3引入transition之前css没有时间轴，所有的状态变化都是瞬间完成，transition是指定状态变化所需要的时间。  目前，各大浏览器（包括IE 10）都已经支持无前缀的transition，所以transition已经可以很安全地不加浏览器前缀。 transition需要明确知道，开始状态和结束状态的具体数值，才能计算出中间状态，none到block之类的是">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/qqqqq.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://qiuwanlin.github.io/2018/08/13/css动画与3d/"/>
+
+
+
+
+
+  <title>css动画 | qiu's Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/qqqqq.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">qiu's Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/qqqqq.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/qqqqq.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/13/css动画与3d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiu's Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css动画</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T15:28:00+08:00">
+                2018-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">-css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="transition"><a href="#transition" class="headerlink" title="transition"></a>transition</h1><p>在CSS3引入transition之前css没有时间轴，所有的状态变化都是瞬间完成，transition是指定状态变化所需要的时间。</p>
+<ol>
+<li>目前，各大浏览器（包括IE 10）都已经支持无前缀的transition，所以transition已经可以很安全地不加浏览器前缀。</li>
+<li>transition需要明确知道，开始状态和结束状态的具体数值，才能计算出中间状态，none到block之类的是不行的。</li>
+<li>transition是一次性的，不能重复发生，除非一再触发。</li>
+</ol>
+<h2 id="指定属性-amp-delay"><a href="#指定属性-amp-delay" class="headerlink" title="指定属性&amp;delay"></a>指定属性&amp;delay</h2><p>我们可以指定transition适用的属性，比如只适用于height，这样一来，只有height的变化需要1秒实现，其他变化（主要是width）依然瞬间实现。<br>在同一行transition语句中，可以分别指定多个属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition: 1s height, 1s width;</span><br></pre></td></tr></table></figure></p>
+<p>但这样height和width的变化是同时进行的，跟不指定它们没有差别，如果希望让height先变化，结束以后width再发生变化，这样就要为width指定一个delay参数。width在1秒之后再开始变化，也就是延迟（delay）1秒<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition: 1s height, 1s 1s width;</span><br></pre></td></tr></table></figure></p>
+<h2 id="transition-timing-function"><a href="#transition-timing-function" class="headerlink" title="transition-timing-function"></a>transition-timing-function</h2><ul>
+<li>transition的状态变化速度（又称timing function），默认不是匀速的，而是逐渐放慢，这叫做ease。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition: 1s ease;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>除了ease以外，其他模式还包括：<br>linear：匀速<br>ease-in：加速<br>ease-out：减速<br>cubic-bezier函数：自定义速度模式 <a href="http://cubic-bezier.com/#.17,.67,.83,.67" target="_blank" rel="noopener">预览</a></p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>transition的完整写法如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition: 1s 1s height ease;</span><br></pre></td></tr></table></figure></p>
+<p>这其实是一个简写形式，可以单独定义各个属性<br>transition-property: height;<br>transition-duration: 1s;<br>transition-delay: 1s;</p>
+<h2 id="transition-timing-function-ease"><a href="#transition-timing-function-ease" class="headerlink" title="transition-timing-function: ease;"></a>transition-timing-function: ease;</h2><h1 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h1><p>transition 比较简单，animation可以帮我们实现复杂的动画。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@keyframes rainbow &#123;</span><br><span class="line">  0% &#123; background: #c00; &#125;</span><br><span class="line">  50% &#123; background: orange; &#125;</span><br><span class="line">  100% &#123; background: yellowgreen; &#125;</span><br><span class="line">&#125;</span><br><span class="line">div:hover &#123;</span><br><span class="line">  animation: 1s rainbow infinite; //加入infinite关键字，可以让动画无限次播放，也可以替换为数字指定动画具体播放的次数。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="animation-fill-mode"><a href="#animation-fill-mode" class="headerlink" title="animation-fill-mode"></a>animation-fill-mode</h2><ul>
+<li>动画结束以后，会立即从结束状态跳回到起始状态。</li>
+<li>如果想让动画保持在结束状态，需要使用animation-fill-mode属性。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">div:hover &#123;</span><br><span class="line">  animation: 1s rainbow forwards;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>animation-fill-mode可以定义下列值：<br>none：默认值，回到动画没开始时的状态<br>forwards：让动画停留在结束状态<br>backwards：让动画回到第一帧的状态<br>both: 根据animation-direction轮流应用forwards和backwards规则。</p>
+<h2 id="animation-direction"><a href="#animation-direction" class="headerlink" title="animation-direction"></a>animation-direction</h2><ul>
+<li>动画<em>循环</em>播放时，每次都是从结束状态跳回到起始状态再播放。animation-direction属性可以改变这种行为。</li>
+<li>animation-direction指定了动画播放的方向，最常用的值是normal和reverse。浏览器对其他值的支持情况不佳，慎用。<br>默认情况animation-direction等于normal。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">div:hover &#123;</span><br><span class="line">  animation: 1s rainbow 3 normal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>还可以取alternate（    动画应该轮流反向播放。）、reverse（动画反向播放。）、alternate-reverse等值。</p>
+<h2 id="animation-play-state"><a href="#animation-play-state" class="headerlink" title="animation-play-state"></a>animation-play-state</h2><p>有时动画播放过程中会突然停止。这时默认行为是跳回到动画的开始状态，如果想让动画保持突然终止时的状态，就要使用animation-play-state属性。</p>
+<h2 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h2><p>同transition一样，animation也是一个简写形式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">div:hover &#123;</span><br><span class="line">  animation: 1s 1s rainbow linear 3 forwards normal;</span><br><span class="line">&#125;</span><br><span class="line">div:hover &#123;</span><br><span class="line">  animation-name: rainbow;</span><br><span class="line">  animation-duration: 1s;</span><br><span class="line">  animation-timing-function: linear;</span><br><span class="line">  animation-delay: 1s;</span><br><span class="line">  animation-fill-mode:forwards;</span><br><span class="line">  animation-direction: normal;</span><br><span class="line">  animation-iteration-count: 3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>keyframes关键字用来定义动画的各个状态，它的写法相当自由，0%可以用from代表，100%可以用to代表，如果省略某个状态，浏览器会自动推算中间状态。<br>甚至，可以把多个状态写在一行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@keyframes pound &#123;</span><br><span class="line">  from，to &#123; transform: none; &#125;</span><br><span class="line">  50% &#123; transform: scale(1.2); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>另外，浏览器从一个状态向另一个状态过渡是平滑过渡。steps函数可以实现分步过渡。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">div:hover &#123;</span><br><span class="line">  animation: 1s rainbow infinite steps(10);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/qqqqq.github.io/2018/08/05/js-函数/" rel="next" title="js-函数">
+                <i class="fa fa-chevron-left"></i> js-函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/qqqqq.github.io/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/qqqqq.github.io/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#transition"><span class="nav-number">1.</span> <span class="nav-text">transition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#指定属性-amp-delay"><span class="nav-number">1.1.</span> <span class="nav-text">指定属性&amp;delay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transition-timing-function"><span class="nav-number">1.2.</span> <span class="nav-text">transition-timing-function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.3.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transition-timing-function-ease"><span class="nav-number">1.4.</span> <span class="nav-text">transition-timing-function: ease;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#animation"><span class="nav-number">2.</span> <span class="nav-text">animation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#animation-fill-mode"><span class="nav-number">2.1.</span> <span class="nav-text">animation-fill-mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#animation-direction"><span class="nav-number">2.2.</span> <span class="nav-text">animation-direction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#animation-play-state"><span class="nav-number">2.3.</span> <span class="nav-text">animation-play-state</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法-1"><span class="nav-number">2.4.</span> <span class="nav-text">语法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/qqqqq.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
