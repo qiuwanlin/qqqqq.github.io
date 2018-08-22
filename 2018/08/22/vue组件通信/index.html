@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/qqqqq.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/qqqqq.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/qqqqq.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/qqqqq.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/qqqqq.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/qqqqq.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/qqqqq.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="父子组件父组件向子组件通信 父组件数据如何传递给子组件呢？可以通过props属性来实现：1234567891011121314151617&amp;lt;div id=&amp;quot;app2&amp;quot;&amp;gt; &amp;lt;input v-model=&amp;quot;parentMsg&amp;quot;&amp;gt; &amp;lt;child :parent-msg=&amp;quot;parentMsg&amp;quot;&amp;gt;&amp;lt;/chi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue组件通信">
+<meta property="og:url" content="https://qiuwanlin.github.io/2018/08/22/vue组件通信/index.html">
+<meta property="og:site_name" content="qiu&#39;s Hexo">
+<meta property="og:description" content="父子组件父组件向子组件通信 父组件数据如何传递给子组件呢？可以通过props属性来实现：1234567891011121314151617&amp;lt;div id=&amp;quot;app2&amp;quot;&amp;gt; &amp;lt;input v-model=&amp;quot;parentMsg&amp;quot;&amp;gt; &amp;lt;child :parent-msg=&amp;quot;parentMsg&amp;quot;&amp;gt;&amp;lt;/chi">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-22T13:43:57.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue组件通信">
+<meta name="twitter:description" content="父子组件父组件向子组件通信 父组件数据如何传递给子组件呢？可以通过props属性来实现：1234567891011121314151617&amp;lt;div id=&amp;quot;app2&amp;quot;&amp;gt; &amp;lt;input v-model=&amp;quot;parentMsg&amp;quot;&amp;gt; &amp;lt;child :parent-msg=&amp;quot;parentMsg&amp;quot;&amp;gt;&amp;lt;/chi">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/qqqqq.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://qiuwanlin.github.io/2018/08/22/vue组件通信/"/>
+
+
+
+
+
+  <title>vue组件通信 | qiu's Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/qqqqq.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">qiu's Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/qqqqq.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/qqqqq.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/22/vue组件通信/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiu's Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue组件通信</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-22T20:34:18+08:00">
+                2018-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="父子组件"><a href="#父子组件" class="headerlink" title="父子组件"></a>父子组件</h1><h2 id="父组件向子组件通信"><a href="#父组件向子组件通信" class="headerlink" title="父组件向子组件通信"></a>父组件向子组件通信</h2><ul>
+<li>父组件数据如何传递给子组件呢？可以通过props属性来实现：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app2&quot;&gt; </span><br><span class="line">&lt;input v-model=&quot;parentMsg&quot;&gt; </span><br><span class="line">&lt;child :parent-msg=&quot;parentMsg&quot;&gt;&lt;/child&gt; </span><br><span class="line">&lt;/div&gt; </span><br><span class="line">&lt;script&gt;</span><br><span class="line"> Vue.component(&apos;child&apos;, &#123;</span><br><span class="line">      props: [&apos;parentMsg&apos;], </span><br><span class="line">      template: </span><br><span class="line">      `&lt;div&gt;&#123;&#123; parentMsg &#125;&#125;&lt;/div&gt;` </span><br><span class="line">&#125;); </span><br><span class="line">new Vue(&#123; </span><br><span class="line">    el: &apos;#app2&apos;, </span><br><span class="line">    data: &#123; </span><br><span class="line">        parentMsg: &apos;msg from baba!&apos; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;) </span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="子组件与父组件通信"><a href="#子组件与父组件通信" class="headerlink" title="子组件与父组件通信"></a>子组件与父组件通信</h2><p>那么，如果子组件想要改变数据呢？这在vue中是不允许的，因为vue只允许单向数据传递，这时候我们可以通过触发自定义事件来通知父组件改变数据，从而达到改变子组件数据的目的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;fuzi&quot;&gt;</span><br><span class="line">&lt;child v-on:xxx=&quot;yyy&quot;&gt;&lt;/child&gt;</span><br><span class="line">//v-on:xxx=&quot;yyy&quot;表示如果触发组件中的xxx事件则连带触发父组件中的yyy事件</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">	template: &apos;&lt;button v-on:click=&quot;xxx&quot;&gt;告诉爸爸&lt;/button&gt;&apos;,</span><br><span class="line">	methods: &#123;</span><br><span class="line">		xxx: function() &#123;</span><br><span class="line">			this.$emit(&apos;xxx&apos;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">var vue1 = new Vue(&#123;</span><br><span class="line">	el:&quot;#fuzi&quot;, // 这里的el可视为父组件,所以下面这个片段是放在#fuzi里面的</span><br><span class="line">	data: &#123;&#125;,</span><br><span class="line">	methods: &#123;</span><br><span class="line">		yyy: function() &#123;</span><br><span class="line">			alert(&apos;爸爸知道了&apos;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h1 id="爷孙组件"><a href="#爷孙组件" class="headerlink" title="爷孙组件"></a>爷孙组件</h1><ul>
+<li>严格意义上来讲，没有爷孙通信，只有父子通信，因为爷孙祖辈通信，都可以看成是父子通信。<br>直接使用props和$emit并不能直接通信，但是爷爷可以和儿子通信，儿子可以和孙子通信，那么可以把儿子当作中转。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child v-bind:xxx=&apos;yyy&apos; @gotozzz=&apos;zzz&apos;&gt;儿子&lt;/child&gt;        </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>爷爷是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let app = new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  data:&#123;</span><br><span class="line">      yyy:&apos;&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">      zzz:&#123;...&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>儿子是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&apos;child&apos;, &#123;</span><br><span class="line">  props: [&apos;yyy&apos;],</span><br><span class="line">  template: `</span><br><span class="line">  &lt;sunzi v-bind:xxx=&apos;yyy&apos; @gotozzz=&quot;$emit(&apos;gotozzz&apos;)&quot;&gt;孙子&lt;/sunzi&gt;</span><br><span class="line">  `,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>孙子是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&apos;sunzi&apos;, &#123;</span><br><span class="line">  props: [&apos;yyy&apos;],</span><br><span class="line">  template: `</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;button  @click=&quot;$emit(&apos;gotozzz&apos;)&quot;&gt;z&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  `</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h1 id="兄弟组件"><a href="#兄弟组件" class="headerlink" title="兄弟组件"></a>兄弟组件</h1><ul>
+<li>兄弟间的通信在简单的场景下，可以使用一个空的 Vue 实例作为事件总线：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">var bus=new Vue();</span><br><span class="line">    var vm=new Vue(&#123;</span><br><span class="line">        el:&quot;#app&quot;,</span><br><span class="line">        components:&#123;</span><br><span class="line">            gege:&#123;</span><br><span class="line">                template:&quot;&lt;div @click=&apos;send&apos;&gt;哥哥：&#123;&#123;msg1&#125;&#125;&lt;/div&gt;&quot;,</span><br><span class="line">                data()&#123;</span><br><span class="line">                    return &#123;</span><br><span class="line">                        msg1:&quot;我是哥哥&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                methods:&#123;</span><br><span class="line">                    send()&#123;</span><br><span class="line">                        bus.$emit(&apos;test&apos;,this.msg1);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">           didi:&#123;</span><br><span class="line">                template:&quot;&lt;div&gt;弟弟：&#123;&#123;msg2&#125;&#125;&lt;/div&gt;&quot;,</span><br><span class="line">                data()&#123;</span><br><span class="line">                    return &#123;</span><br><span class="line">                        msg2:&apos;&apos;,</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                created()&#123;</span><br><span class="line">                  var that=this;</span><br><span class="line">                  //console.log(that)</span><br><span class="line">                    bus.$on(&apos;test&apos;,function(msg)&#123;</span><br><span class="line">                        that.msg2=msg;</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/qqqqq.github.io/2018/08/13/css动画与3d/" rel="next" title="css动画">
+                <i class="fa fa-chevron-left"></i> css动画
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/qqqqq.github.io/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/qqqqq.github.io/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#父子组件"><span class="nav-number">1.</span> <span class="nav-text">父子组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#父组件向子组件通信"><span class="nav-number">1.1.</span> <span class="nav-text">父组件向子组件通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子组件与父组件通信"><span class="nav-number">1.2.</span> <span class="nav-text">子组件与父组件通信</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#爷孙组件"><span class="nav-number">2.</span> <span class="nav-text">爷孙组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#兄弟组件"><span class="nav-number">3.</span> <span class="nav-text">兄弟组件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/qqqqq.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/qqqqq.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/qqqqq.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
