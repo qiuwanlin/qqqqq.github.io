@@ -81,14 +81,14 @@
 
 <meta name="description" content="对象初始化可以通过new Object(), Object.creat() 方法，或只用字面量标记来初始化对象。  es5生成空对象：var a = new Object()  // 等价于 var d = {} es6新增生成真正空对象的方法：var b = Object.creat(null) 能创建一个连原型都没有的很空的空对象。 es6也能生成a那种对象：var c = Object.cr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="es6-对象属性加强">
+<meta property="og:title" content="es6-对象语法加强">
 <meta property="og:url" content="https://qiuwanlin.github.io/2018/08/02/es6-对象属性加强/index.html">
 <meta property="og:site_name" content="qiu&#39;s Hexo">
 <meta property="og:description" content="对象初始化可以通过new Object(), Object.creat() 方法，或只用字面量标记来初始化对象。  es5生成空对象：var a = new Object()  // 等价于 var d = {} es6新增生成真正空对象的方法：var b = Object.creat(null) 能创建一个连原型都没有的很空的空对象。 es6也能生成a那种对象：var c = Object.cr">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-06T02:53:09.480Z">
+<meta property="og:updated_time" content="2018-09-05T13:39:59.456Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="es6-对象属性加强">
+<meta name="twitter:title" content="es6-对象语法加强">
 <meta name="twitter:description" content="对象初始化可以通过new Object(), Object.creat() 方法，或只用字面量标记来初始化对象。  es5生成空对象：var a = new Object()  // 等价于 var d = {} es6新增生成真正空对象的方法：var b = Object.creat(null) 能创建一个连原型都没有的很空的空对象。 es6也能生成a那种对象：var c = Object.cr">
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title>es6-对象属性加强 | qiu's Hexo</title>
+  <title>es6-对象语法加强 | qiu's Hexo</title>
   
 
 
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">es6-对象属性加强</h1>
+          <h1 class="post-title" itemprop="name headline">es6-对象语法加强</h1>
         
 
         <div class="post-meta">
@@ -340,7 +340,7 @@
 <li>es6提供了两种简洁语法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var obj2 = Object.assign(&#123;&#125;,obj1)</span><br><span class="line">var obj2 = &#123;...obj1&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="变更原型"><a href="#变更原型" class="headerlink" title="变更原型"></a>变更原型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;&#125;</span><br><span class="line">a.valueOf() // &#123;&#125;</span><br><span class="line">a.__proto__ === Object.prototype</span><br><span class="line"></span><br><span class="line">a = Object.creat(b)</span><br><span class="line">a.__proto__ === b //意味着b的所有属性都可以通过直接访问</span><br><span class="line">a.__proto__ 就可以获取到a的原型，但是不推荐这么写，最好这样</span><br><span class="line">Object.getPrototypeOf(a)</span><br></pre></td></tr></table></figure>
+<h2 id="变更原型"><a href="#变更原型" class="headerlink" title="变更原型"></a>变更原型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;&#125;</span><br><span class="line">a.valueOf() // &#123;&#125;</span><br><span class="line">a.__proto__ === Object.prototype</span><br><span class="line"></span><br><span class="line">若 a = Object.create(b)</span><br><span class="line">则 a.__proto__ === b //b成为了a的原型，b的所有属性都可以通过a直接访问</span><br><span class="line">a.__proto__ 就可以获取到a的原型，但是不推荐这么写，最好这样</span><br><span class="line">Object.getPrototypeOf(a)</span><br></pre></td></tr></table></figure>
 <h2 id="JS的对象与JSON的对象的区别"><a href="#JS的对象与JSON的对象的区别" class="headerlink" title="JS的对象与JSON的对象的区别"></a>JS的对象与JSON的对象的区别</h2><ol>
 <li>JSON 只允许”key”: value syntax 形式的属性定义。属性名必须用双引号括起来。且属性定义不允许使用简便写法。</li>
 <li>JSON中，属性的值仅允许字符串，数字，数组，true，false，null或其他（JSON）对象。</li>
@@ -460,7 +460,7 @@
               
                 <a href="/qqqqq.github.io/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

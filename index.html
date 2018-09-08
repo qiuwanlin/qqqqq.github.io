@@ -229,6 +229,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/09/07/css高度与宽度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiu's Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/qqqqq.github.io/2018/09/07/css高度与宽度/" itemprop="url">css高度与宽度</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-07T16:59:58+08:00">
+                2018-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="关于内联元素"><a href="#关于内联元素" class="headerlink" title="关于内联元素"></a>关于内联元素</h1><p>如果div里只有内联元素，那么高度由内联元素行高决定。字体默认行高是设计师写在字体文件里的。<br>两个inline元素,他们之间有任何的回车空格标签空格都会显示成空格，他们之外的空格不显示。<br>一行文字（无空格英文单词或数字）太长时，浏览器不知道该在哪里断开，可用word-break:break-all自动换行。</p>
+<h1 id="多行文字溢出"><a href="#多行文字溢出" class="headerlink" title="多行文字溢出"></a>多行文字溢出</h1><p>有多行文字，希望只出现一行和省略号：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">white-space:nowrap;  //不换行，超出也继续显示，出现滚动条，但div宽度不变长。</span><br><span class="line">overflow:hidden; //超出部分隐藏。</span><br><span class="line">text-overflow:ellipsis; //多出的文本变成省略号。</span><br></pre></td></tr></table></figure></p>
+<p>希望出现多行和省略号：<br>谷歌一下 css multi line text ellipsis，抄代码。</p>
+<h1 id="文字垂直居中"><a href="#文字垂直居中" class="headerlink" title="文字垂直居中"></a>文字垂直居中</h1><p>给个line-height，然后用padding撑高度。<br>水平居中用text-align:center。</p>
+<h1 id="怎样首尾对齐两行字"><a href="#怎样首尾对齐两行字" class="headerlink" title="怎样首尾对齐两行字"></a>怎样首尾对齐两行字</h1><p>多行字的情况，这样首尾对齐中间疏密不等：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p style=&quot;text-align:justify&quot;&gt;</span><br><span class="line">一大段字&lt;/p&gt;</span><br></pre></td></tr></table></figure></p>
+<p>一行字时，加after元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">span&#123;</span><br><span class="line">    display:inline-block;</span><br><span class="line">    width:5em; //em和汉字很合适</span><br><span class="line">    text-align:justify;</span><br><span class="line">    line-height:xx;height:xx;</span><br><span class="line">    overflow:hidden;</span><br><span class="line">&#125;</span><br><span class="line">span::after&#123;</span><br><span class="line">    content:&apos;&apos;;</span><br><span class="line">    display:inline-block;</span><br><span class="line">    width:100%;</span><br><span class="line">&#125;</span><br><span class="line">&lt;span&gt;这两行&lt;/span&gt;</span><br><span class="line">&lt;span&gt;想要对齐&lt;/span&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="margin合并"><a href="#margin合并" class="headerlink" title="margin合并"></a>margin合并</h1><p>如果父元素没什么东西（比如border padding）挡住margin，儿子和爸爸的上下margin会合并。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/09/04/数组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1078,7 +1226,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/qqqqq.github.io/2018/08/02/es6-对象属性加强/" itemprop="url">es6-对象属性加强</a></h1>
+                <a class="post-title-link" href="/qqqqq.github.io/2018/08/02/es6-对象属性加强/" itemprop="url">es6-对象语法加强</a></h1>
         
 
         <div class="post-meta">
@@ -1171,7 +1319,7 @@
 <li>es6提供了两种简洁语法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var obj2 = Object.assign(&#123;&#125;,obj1)</span><br><span class="line">var obj2 = &#123;...obj1&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="变更原型"><a href="#变更原型" class="headerlink" title="变更原型"></a>变更原型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;&#125;</span><br><span class="line">a.valueOf() // &#123;&#125;</span><br><span class="line">a.__proto__ === Object.prototype</span><br><span class="line"></span><br><span class="line">a = Object.creat(b)</span><br><span class="line">a.__proto__ === b //意味着b的所有属性都可以通过直接访问</span><br><span class="line">a.__proto__ 就可以获取到a的原型，但是不推荐这么写，最好这样</span><br><span class="line">Object.getPrototypeOf(a)</span><br></pre></td></tr></table></figure>
+<h2 id="变更原型"><a href="#变更原型" class="headerlink" title="变更原型"></a>变更原型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;&#125;</span><br><span class="line">a.valueOf() // &#123;&#125;</span><br><span class="line">a.__proto__ === Object.prototype</span><br><span class="line"></span><br><span class="line">若 a = Object.create(b)</span><br><span class="line">则 a.__proto__ === b //b成为了a的原型，b的所有属性都可以通过a直接访问</span><br><span class="line">a.__proto__ 就可以获取到a的原型，但是不推荐这么写，最好这样</span><br><span class="line">Object.getPrototypeOf(a)</span><br></pre></td></tr></table></figure>
 <h2 id="JS的对象与JSON的对象的区别"><a href="#JS的对象与JSON的对象的区别" class="headerlink" title="JS的对象与JSON的对象的区别"></a>JS的对象与JSON的对象的区别</h2><ol>
 <li>JSON 只允许”key”: value syntax 形式的属性定义。属性名必须用双引号括起来。且属性定义不允许使用简便写法。</li>
 <li>JSON中，属性的值仅允许字符串，数字，数组，true，false，null或其他（JSON）对象。</li>
@@ -1716,170 +1864,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/01/es6-let/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qiu's Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/qqqqq.github.io/2018/08/01/es6-let/" itemprop="url">es6-let和const</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T10:27:18+08:00">
-                2018-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/qqqqq.github.io/categories/es6/" itemprop="url" rel="index">
-                    <span itemprop="name">es6</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="a-1-或者-var-a-1-哪里不好？"><a href="#a-1-或者-var-a-1-哪里不好？" class="headerlink" title="a=1 或者 var a=1 哪里不好？"></a>a=1 或者 var a=1 哪里不好？</h1><ol>
-<li>a=1<strong>有可能</strong>会声明一个全局变量。如果当前有a就利用这个a。没有a就声明一个全局变量a。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">    var a  </span><br><span class="line">    function fn2()&#123;</span><br><span class="line">        a=1  //这个a只是对上一层局部变量a赋值，没有声明全局变量。</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>所以a=1的缺点就是含义不明。</p>
-<ol start="2">
-<li>var a=1会提升变量。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">    if(true)&#123;</span><br><span class="line">        console.log(a) //报错 a is not defined</span><br><span class="line">    &#125;else&#123;  //这里不会执行</span><br><span class="line">// var a 这行存在的话就不报错，这句会提升到最上面。</span><br><span class="line">        console,log(2)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ul>
-<li><p>如果不想暴露全局变量，就要用函数包住，但这样又会增加一个全局变量-函数名。所以只好用立即执行函数来解决。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">    var a = 1</span><br><span class="line">    window.qiu=function()&#123;</span><br><span class="line">        console.log(a)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;())</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>搞了这么多只是为了不把局部变量暴露成全局，所以有了let。</p>
-</li>
-</ul>
-<h1 id="let-是怎样的。"><a href="#let-是怎样的。" class="headerlink" title="let 是怎样的。"></a>let 是怎样的。</h1><ol>
-<li>let作用域就在{}里，看到{}就不会继续往上提升了，写在哪就在哪，能方便的使用局部变量。<br>{let a=1}console.log(a)//not defined</li>
-<li>let可以嵌套，不需要函数。Temp Dead Zone，在{到let之间，a是死的，不可用。</li>
-<li>不能在一个区块里重复使用let声明同一变量。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    let a=1</span><br><span class="line">    &#123;</span><br><span class="line">        console.log(a) //报错 not defined</span><br><span class="line">        let a=2</span><br><span class="line">        &#123;</span><br><span class="line">            let a=3</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="const-是怎样的。"><a href="#const-是怎样的。" class="headerlink" title="const 是怎样的。"></a>const 是怎样的。</h1><p>const和let几乎完全一样，除了一点，只能进行一次赋值，而且必须在声明式立刻赋值，即声明了一个常量。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1930,7 +1914,7 @@
               
                 <a href="/qqqqq.github.io/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

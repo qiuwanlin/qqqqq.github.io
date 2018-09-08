@@ -229,6 +229,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/01/es6-let/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiu's Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/qqqqq.github.io/2018/08/01/es6-let/" itemprop="url">es6-let和const</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T10:27:18+08:00">
+                2018-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="a-1-或者-var-a-1-哪里不好？"><a href="#a-1-或者-var-a-1-哪里不好？" class="headerlink" title="a=1 或者 var a=1 哪里不好？"></a>a=1 或者 var a=1 哪里不好？</h1><ol>
+<li>a=1<strong>有可能</strong>会声明一个全局变量。如果当前有a就利用这个a。没有a就声明一个全局变量a。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">    var a  </span><br><span class="line">    function fn2()&#123;</span><br><span class="line">        a=1  //这个a只是对上一层局部变量a赋值，没有声明全局变量。</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>所以a=1的缺点就是含义不明。</p>
+<ol start="2">
+<li>var a=1会提升变量。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">    if(true)&#123;</span><br><span class="line">        console.log(a) //报错 a is not defined</span><br><span class="line">    &#125;else&#123;  //这里不会执行</span><br><span class="line">// var a 这行存在的话就不报错，这句会提升到最上面。</span><br><span class="line">        console,log(2)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p>如果不想暴露全局变量，就要用函数包住，但这样又会增加一个全局变量-函数名。所以只好用立即执行函数来解决。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">    var a = 1</span><br><span class="line">    window.qiu=function()&#123;</span><br><span class="line">        console.log(a)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>搞了这么多只是为了不把局部变量暴露成全局，所以有了let。</p>
+</li>
+</ul>
+<h1 id="let-是怎样的。"><a href="#let-是怎样的。" class="headerlink" title="let 是怎样的。"></a>let 是怎样的。</h1><ol>
+<li>let作用域就在{}里，看到{}就不会继续往上提升了，写在哪就在哪，能方便的使用局部变量。<br>{let a=1}console.log(a)//not defined</li>
+<li>let可以嵌套，不需要函数。Temp Dead Zone，在{到let之间，a是死的，不可用。</li>
+<li>不能在一个区块里重复使用let声明同一变量。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    let a=1</span><br><span class="line">    &#123;</span><br><span class="line">        console.log(a) //报错 not defined</span><br><span class="line">        let a=2</span><br><span class="line">        &#123;</span><br><span class="line">            let a=3</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="const-是怎样的。"><a href="#const-是怎样的。" class="headerlink" title="const 是怎样的。"></a>const 是怎样的。</h1><p>const和let几乎完全一样，除了一点，只能进行一次赋值，而且必须在声明式立刻赋值，即声明了一个常量。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/05/16/cookie/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -493,7 +657,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/04/18/post/">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/04/18/AJAX与CORS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -512,7 +676,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/qqqqq.github.io/2018/04/18/post/" itemprop="url">AJAX与CORS</a></h1>
+                <a class="post-title-link" href="/qqqqq.github.io/2018/04/18/AJAX与CORS/" itemprop="url">AJAX与CORS</a></h1>
         
 
         <div class="post-meta">
@@ -1358,7 +1522,7 @@
               
                 <a href="/qqqqq.github.io/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
