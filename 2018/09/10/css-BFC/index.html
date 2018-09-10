@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="具名函数：function xxx(p1,p2){return 1} 匿名函数：let xxx = function(p1,p2){return 1} 箭头函数：   let x1 = (p1,p2)=&amp;gt;{return 1} let x2 = p1 =&amp;gt;{return 1}只有一个参数可以不写括号 let x3 = (p1,p2) =&amp;gt; p1+p2 //{return p1+p">
+<meta name="description" content="BFC的定义 Bloack Formatting Context 块格式化上下文。  CSS规范中对 BFC 的描述：浮动、绝对定位元素、非块盒的块容器（例如，inline-blocks、table-cells和table-captions）和’overflow’不为’visible’的块盒会为它们的内容建立一个新的块格式化上下文。在一个BFC中，盒在竖直方向一个接一个地放置，从包含块的顶部开始。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="es6-箭头函数">
-<meta property="og:url" content="https://qiuwanlin.github.io/2018/08/01/es6-箭头函数/index.html">
+<meta property="og:title" content="css-BFC">
+<meta property="og:url" content="https://qiuwanlin.github.io/2018/09/10/css-BFC/index.html">
 <meta property="og:site_name" content="qiu&#39;s Hexo">
-<meta property="og:description" content="具名函数：function xxx(p1,p2){return 1} 匿名函数：let xxx = function(p1,p2){return 1} 箭头函数：   let x1 = (p1,p2)=&amp;gt;{return 1} let x2 = p1 =&amp;gt;{return 1}只有一个参数可以不写括号 let x3 = (p1,p2) =&amp;gt; p1+p2 //{return p1+p">
+<meta property="og:description" content="BFC的定义 Bloack Formatting Context 块格式化上下文。  CSS规范中对 BFC 的描述：浮动、绝对定位元素、非块盒的块容器（例如，inline-blocks、table-cells和table-captions）和’overflow’不为’visible’的块盒会为它们的内容建立一个新的块格式化上下文。在一个BFC中，盒在竖直方向一个接一个地放置，从包含块的顶部开始。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-06T02:53:17.445Z">
+<meta property="og:updated_time" content="2018-09-10T13:20:14.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="es6-箭头函数">
-<meta name="twitter:description" content="具名函数：function xxx(p1,p2){return 1} 匿名函数：let xxx = function(p1,p2){return 1} 箭头函数：   let x1 = (p1,p2)=&amp;gt;{return 1} let x2 = p1 =&amp;gt;{return 1}只有一个参数可以不写括号 let x3 = (p1,p2) =&amp;gt; p1+p2 //{return p1+p">
+<meta name="twitter:title" content="css-BFC">
+<meta name="twitter:description" content="BFC的定义 Bloack Formatting Context 块格式化上下文。  CSS规范中对 BFC 的描述：浮动、绝对定位元素、非块盒的块容器（例如，inline-blocks、table-cells和table-captions）和’overflow’不为’visible’的块盒会为它们的内容建立一个新的块格式化上下文。在一个BFC中，盒在竖直方向一个接一个地放置，从包含块的顶部开始。">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://qiuwanlin.github.io/2018/08/01/es6-箭头函数/"/>
+  <link rel="canonical" href="https://qiuwanlin.github.io/2018/09/10/css-BFC/"/>
 
 
 
 
 
-  <title>es6-箭头函数 | qiu's Hexo</title>
+  <title>css-BFC | qiu's Hexo</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/08/01/es6-箭头函数/">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/09/10/css-BFC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">es6-箭头函数</h1>
+          <h1 class="post-title" itemprop="name headline">css-BFC</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T16:14:07+08:00">
-                2018-08-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T17:39:55+08:00">
+                2018-09-10
               </time>
             
 
@@ -284,8 +284,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/qqqqq.github.io/categories/es6/" itemprop="url" rel="index">
-                    <span itemprop="name">es6</span>
+                  <a href="/qqqqq.github.io/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
                   </a>
                 </span>
 
@@ -321,26 +321,17 @@
       
 
       
-        <ul>
-<li>具名函数：<br>function xxx(p1,p2){return 1}</li>
-<li>匿名函数：<br>let xxx = function(p1,p2){return 1}</li>
-<li>箭头函数：</li>
+        <h1 id="BFC的定义"><a href="#BFC的定义" class="headerlink" title="BFC的定义"></a>BFC的定义</h1><ul>
+<li>Bloack Formatting Context 块格式化上下文。</li>
 </ul>
-<ol>
-<li>let x1 = (p1,p2)=&gt;{return 1}</li>
-<li>let x2 = p1 =&gt;{return 1}<br>只有一个参数可以不写括号</li>
-<li>let x3 = (p1,p2) =&gt; p1+p2 //{return p1+p2}<br>如果函数体只有一句话，可以不写花括号。<br>没花括号就必须删掉return，反过来没事，JS会默认帮忙加上rentun undefined。</li>
-<li>let x4 = p1 =&gt; p1*2<br>最简化形式，只有一个参数和一句话。</li>
+<h2 id="CSS规范中对-BFC-的描述："><a href="#CSS规范中对-BFC-的描述：" class="headerlink" title="CSS规范中对 BFC 的描述："></a>CSS规范中对 BFC 的描述：</h2><p>浮动、绝对定位元素、非块盒的块容器（例如，inline-blocks、table-cells和table-captions）和’overflow’不为’visible’的块盒会为它们的内容建立一个新的块格式化上下文。<br>在一个BFC中，盒在竖直方向一个接一个地放置，从包含块的顶部开始。两个兄弟盒之间的竖直距离由’margin’属性决定。同一个BFC中的相邻块级盒之间的竖直margin会合并。<br>在一个BFC中，每个盒的left外边（left outer edge）挨着包含块的left边（对于从右向左的格式化，right边挨着）。即使存在浮动（尽管一个盒的行盒可能会因为浮动收缩），这也成立。除非该盒建立了一个新的块格式化上下文（这种情况下，该盒自身可能会因为浮动变窄）。</p>
+<h2 id="MDN-对-BFC-的描述："><a href="#MDN-对-BFC-的描述：" class="headerlink" title="MDN 对 BFC 的描述："></a>MDN 对 BFC 的描述：</h2><p>一个BFC是Web页面的可视化CSS渲染出的一部分。它是块级盒布局出现的区域，也是浮动层元素进行交互的区域。<br>display:flow-root是专门用来触发BFC没别的用的新增属性。<br>一个BFC包括创建它的元素内部所有内容，除了被包含于创建新的块级格式化上下文的后代元素内的元素。(父元素是BFC就会包住子元素，如果子元素也是BFC那父元素就管不着孙子元素)<br>BFC对于定位 (参见 float) 与清除浮动 (参见 clear) 很重要。定位和清除浮动的样式规则只适用于处于同一BFC内的元素。浮动不会影响其它BFC中元素的布局，并且清除浮动只能清除同一BFC中在它前面的元素的浮动。</p>
+<h2 id="它没有定义-只有特征-功能。"><a href="#它没有定义-只有特征-功能。" class="headerlink" title="它没有定义,只有特征/功能。"></a>它没有定义,只有特征/功能。</h2><p>我不知道什么是BFC，但你写出样式我就知道这是不是BFC。</p>
+<h1 id="BFC的功能"><a href="#BFC的功能" class="headerlink" title="BFC的功能"></a>BFC的功能</h1><ol>
+<li>用BFC包住浮动元素<br>子元素浮动后父元素没有高度。<br>看CSS规范得知，若父元素也浮动或绝对定位或变为非块盒的块容器或overflow:auto就可以包住子元素了，父元素即形成一BFC。</li>
+<li>元素间划清界限<br>比如AB为级别相同元素，A元素左浮后会跑到B上面，像是B包住了A，这时B也触发BFC（比如overflow:auto）则会划清界限。</li>
 </ol>
-<ul>
-<li><p>为什么要用箭头函数？<br>因为this太难用了。（this是call的第一个参数）</p>
-</li>
-<li><p>箭头函数用法举例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array = [1,2,3]</span><br><span class="line">for(let i=0;i&lt;array.length;i++)&#123;</span><br><span class="line">    array[i]=array[i]*array[i]</span><br><span class="line">&#125;</span><br><span class="line">array</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">array.map(function(num)&#123;</span><br><span class="line">    return num*num</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.map(num=&gt;num*num)</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -364,8 +355,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/qqqqq.github.io/2018/08/01/es6-let/" rel="next" title="es6-let和const">
-                <i class="fa fa-chevron-left"></i> es6-let和const
+              <a href="/qqqqq.github.io/2018/09/10/css布局套路/" rel="next" title="css浮动布局套路">
+                <i class="fa fa-chevron-left"></i> css浮动布局套路
               </a>
             
           </div>
@@ -373,10 +364,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/qqqqq.github.io/2018/08/01/es6-语法糖/" rel="prev" title="es6-语法糖">
-                es6-语法糖 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -428,8 +415,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -480,6 +476,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BFC的定义"><span class="nav-number">1.</span> <span class="nav-text">BFC的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS规范中对-BFC-的描述："><span class="nav-number">1.1.</span> <span class="nav-text">CSS规范中对 BFC 的描述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MDN-对-BFC-的描述："><span class="nav-number">1.2.</span> <span class="nav-text">MDN 对 BFC 的描述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#它没有定义-只有特征-功能。"><span class="nav-number">1.3.</span> <span class="nav-text">它没有定义,只有特征/功能。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BFC的功能"><span class="nav-number">2.</span> <span class="nav-text">BFC的功能</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
