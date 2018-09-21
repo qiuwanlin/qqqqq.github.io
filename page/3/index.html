@@ -229,6 +229,303 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/04/16/jsonp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiu's Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/qqqqq.github.io/2018/04/16/jsonp/" itemprop="url">jsonp</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-16T10:32:56+08:00">
+                2018-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="JSONP是什么"><a href="#JSONP是什么" class="headerlink" title="JSONP是什么"></a>JSONP是什么</h2><ul>
+<li>请求方动态创建一个 script 标签，src 属性指向响应方，同时传一个查询参数如 ?callbackName=xxx</li>
+<li>响应方根据查询参数callbackName，构造形如<br>xxx.call(undefined,’需要的数据’)<br>xxx.call(‘需要的数据’)</li>
+<li>浏览器方接收到响应，就会执行xxx.call(undefined,’你要的数据 ‘)，那么请求方就知道了他要的数据。<br>这就是JSONP。</li>
+</ul>
+<h2 id="行业规定"><a href="#行业规定" class="headerlink" title="行业规定"></a>行业规定</h2><p>callbackName -&gt; callback<br>xxx -&gt; 随机数 xxx随机数</p>
+<ul>
+<li>即回调函数的查询参数名称是callback，调用的函数名是结合随机数动态生成创建后调用再删除的，jQuery的jsonp方法便是采用这样的约定实现的。</li>
+</ul>
+<h2 id="JSONP-为什么不支持-POST"><a href="#JSONP-为什么不支持-POST" class="headerlink" title="JSONP 为什么不支持 POST"></a>JSONP 为什么不支持 POST</h2><p>1.因为jsonp是通过动态创建script标签实现的<br>2.动态创建script的时候只能使用get，无法使用post</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/04/11/css小知识点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/qqqqq.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiu's Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/qqqqq.github.io/2018/04/11/css小知识点/" itemprop="url">css小知识点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-11T17:24:33+08:00">
+                2018-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/qqqqq.github.io/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="关于盒模型"><a href="#关于盒模型" class="headerlink" title="关于盒模型"></a>关于盒模型</h1><blockquote>
+<p>可以认为每个html标签都是一个方块，然后这个方块又包着几个小方块，如同盒子一层层的包裹着，这就是所谓的盒模型。</p>
+</blockquote>
+<p>通常情况，当你设置了元素的宽度，实际展现的元素却超出你的设置，这是因为元素的边框和内边距会撑开元素。<br>所以需要用比你实际想要的宽度小一点的宽度，因为要减去内边距和边框的宽度。<br>后来人们意识到传统的盒子模型不直接，所以新增了一个叫做 box-sizing 的CSS属性。</p>
+<ul>
+<li>当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度。</li>
+</ul>
+<h1 id="关于Normalize-css和-reset-css"><a href="#关于Normalize-css和-reset-css" class="headerlink" title="关于Normalize.css和 reset.css"></a>关于Normalize.css和 reset.css</h1><p>相同点：<br>    1.重置样式<br>    2.保持跨浏览器一致性</p>
+<p>不同点：<br>    reset:重置默认样式  之前的样式我不要，抛弃默认样式。<br>    Normalize：让所有浏览器的标签都跟标准规定的默认样式一致，各浏览器上的标签默认样式基本统一。</p>
+<h1 id="选择器优先级如何确定？"><a href="#选择器优先级如何确定？" class="headerlink" title="选择器优先级如何确定？"></a>选择器优先级如何确定？</h1><ul>
+<li>选择器越具体，优先级越高。 #xxx 大于 .yyy 。</li>
+<li>同样优先级，写在后面的覆盖前面的。</li>
+<li>color: red !important; 优先级最高。</li>
+</ul>
+<h1 id="margin-auto"><a href="#margin-auto" class="headerlink" title="margin: auto;"></a>margin: auto;</h1><p>设置块级元素的 width 可以防止它从左到右撑满整个容器。然后就可以设置左右外边距为 auto 来使其水平居中。元素会占据你所指定的宽度，然后剩余的宽度会一分为二成为左右外边距。</p>
+<ul>
+<li>唯一的问题是，当浏览器窗口比元素的宽度还要窄时，浏览器会显示一个水平滚动条来容纳页面。<br>在这种情况下使用 max-width 替代 width 可以使浏览器更好地处理小窗口的情况。这点在移动设备上显得尤为重要。</li>
+</ul>
+<h1 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h1> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.clearfix 清除浮动写在爸爸身上</span><br><span class="line">.clearfix::after&#123;</span><br><span class="line">    content: &apos;&apos;; display: block; clear:both;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix&#123;</span><br><span class="line">    zoom: 1; /* IE 兼容 */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h1><p> “响应式设计（Responsive Design” 是一种让网站针对不同的浏览器和设备“呈现”不同显示效果的策略，这样可以让网站在任何情况下显示的合适。</p>
+<ul>
+<li><p>link元素中的CSS媒体查询 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; media=&quot;(max-width: 800px)&quot; href=&quot;example.css&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>样式表中的CSS媒体查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">@media (max-width: 600px) &#123;</span><br><span class="line">  .facet_sidebar &#123;</span><br><span class="line">    display: none;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/04/02/build-API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -664,7 +961,7 @@
               
                 <a href="/qqqqq.github.io/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

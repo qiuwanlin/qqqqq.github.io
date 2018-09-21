@@ -79,17 +79,14 @@
 
 
 
-<meta name="description" content="媒体查询对某个媒体进行某些条件的查询。123456html:&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;x.css&amp;quot; media=&amp;quot;(max-width:300px)&amp;quot;&amp;gt;css:@media(max-width:300px)&amp;#123;...&amp;#125;@media(min-width:301px) and (m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css响应式">
-<meta property="og:url" content="https://qiuwanlin.github.io/2018/09/08/css响应式/index.html">
+<meta property="og:title" content="es6-Promise">
+<meta property="og:url" content="https://qiuwanlin.github.io/2018/09/21/es6-Promise/index.html">
 <meta property="og:site_name" content="qiu&#39;s Hexo">
-<meta property="og:description" content="媒体查询对某个媒体进行某些条件的查询。123456html:&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;x.css&amp;quot; media=&amp;quot;(max-width:300px)&amp;quot;&amp;gt;css:@media(max-width:300px)&amp;#123;...&amp;#125;@media(min-width:301px) and (m">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-08T09:33:39.318Z">
+<meta property="og:updated_time" content="2018-09-21T01:45:30.693Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css响应式">
-<meta name="twitter:description" content="媒体查询对某个媒体进行某些条件的查询。123456html:&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;x.css&amp;quot; media=&amp;quot;(max-width:300px)&amp;quot;&amp;gt;css:@media(max-width:300px)&amp;#123;...&amp;#125;@media(min-width:301px) and (m">
+<meta name="twitter:title" content="es6-Promise">
 
 
 
@@ -119,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="https://qiuwanlin.github.io/2018/09/08/css响应式/"/>
+  <link rel="canonical" href="https://qiuwanlin.github.io/2018/09/21/es6-Promise/"/>
 
 
 
 
 
-  <title>css响应式 | qiu's Hexo</title>
+  <title>es6-Promise | qiu's Hexo</title>
   
 
 
@@ -232,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/09/08/css响应式/">
+    <link itemprop="mainEntityOfPage" href="https://qiuwanlin.github.io/qqqqq.github.io/2018/09/21/es6-Promise/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -249,7 +246,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">css响应式</h1>
+          <h1 class="post-title" itemprop="name headline">es6-Promise</h1>
         
 
         <div class="post-meta">
@@ -261,8 +258,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-08T15:56:33+08:00">
-                2018-09-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-21T09:45:30+08:00">
+                2018-09-21
               </time>
             
 
@@ -271,28 +268,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/qqqqq.github.io/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -321,19 +296,7 @@
       
 
       
-        <h1 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h1><p>对某个媒体进行某些条件的查询。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">html:</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;x.css&quot; media=&quot;(max-width:300px)&quot;&gt;</span><br><span class="line">css:</span><br><span class="line">@media(max-width:300px)&#123;...&#125;</span><br><span class="line">@media(min-width:301px) and (max-width:500px)&#123;...&#125;</span><br><span class="line">//条件重复时写在后面的优先级高。</span><br></pre></td></tr></table></figure></p>
-<h1 id="meta-viewport"><a href="#meta-viewport" class="headerlink" title="meta viewport"></a>meta viewport</h1><p>document.documentElement.clientWidth //980px<br>手机端要加一个 meta<br>meta:vp（点tap 自动写出）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,//宽度等于设备宽度</span><br><span class="line"> user-scalable=no, //用户不可以缩放</span><br><span class="line"> initial-scale=1.0, //初始缩放倍数是1</span><br><span class="line"> maximum-scale=1.0, minimum-scale=1.0&quot;&gt;</span><br></pre></td></tr></table></figure></p>
-<h1 id="移动端页面"><a href="#移动端页面" class="headerlink" title="移动端页面"></a>移动端页面</h1><p>机端的交互方式不一样：</p>
-<ol>
-<li>没有 hover</li>
-<li>有 touch 事件</li>
-<li>没有 resize</li>
-<li>没有滚动条</li>
-</ol>
-<ul>
-<li>移动端页面布局常用哪些属性？<br>display: flex<br>width: calc();</li>
-</ul>
-
+        
       
     </div>
     
@@ -357,8 +320,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/qqqqq.github.io/2018/09/07/css高度与宽度/" rel="next" title="css高度与宽度">
-                <i class="fa fa-chevron-left"></i> css高度与宽度
+              <a href="/qqqqq.github.io/2018/09/12/css动态REM/" rel="next" title="css动态REM">
+                <i class="fa fa-chevron-left"></i> css动态REM
               </a>
             
           </div>
@@ -366,10 +329,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/qqqqq.github.io/2018/09/08/css-flex布局/" rel="prev" title="css flex布局">
-                css flex布局 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,17 +380,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -482,22 +432,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#媒体查询"><span class="nav-number">1.</span> <span class="nav-text">媒体查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#meta-viewport"><span class="nav-number">2.</span> <span class="nav-text">meta viewport</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移动端页面"><span class="nav-number">3.</span> <span class="nav-text">移动端页面</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
